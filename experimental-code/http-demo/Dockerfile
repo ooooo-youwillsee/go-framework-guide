@@ -3,9 +3,9 @@
 FROM alpine:3.15.0
 
 LABEL author=ooooo
-LABEL app=http-server-demo
+LABEL app=http-demo
 
-COPY ./bin/linux-amd64/http-server-demo /
+COPY ./out/bin/http-demo /
 
 EXPOSE 2001
-ENTRYPOINT ["/http-server-demo"]
+ENTRYPOINT ["/http-demo"]

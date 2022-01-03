@@ -2,10 +2,16 @@ package main
 
 import (
 	"fmt"
-	"github.com/golang/glog"
+	log "github.com/sirupsen/logrus"
 	"net/http"
 	"os"
 )
+
+func init() {
+	log.SetFormatter(&log.JSONFormatter{})
+	log.SetOutput(os.Stdout)
+	log.SetLevel(log.DebugLevel)
+}
 
 func main() {
 	serveMux := http.NewServeMux()
@@ -13,8 +19,11 @@ func main() {
 	serveMux.HandleFunc("/testEnv", testEnv)
 	serveMux.HandleFunc("/testHeader", testHeader)
 
+	log.Info("start http-server at http://localhost:2001")
 	server := http.Server{Addr: ":2001", Handler: serveMux}
-	server.ListenAndServe()
+	if err := server.ListenAndServe(); err != nil {
+		log.Errorln("start http-server err", err.Error())
+	}
 }
 
 func test(w http.ResponseWriter, r *http.Request) {
@@ -26,7 +35,7 @@ func testEnv(w http.ResponseWriter, r *http.Request) {
 
 	environ := os.Environ()
 	for _, envKey := range environ {
-		glog.Infof("env: %s", envKey)
+		log.Infof("env: %s", envKey)
 	}
 
 	if key := r.Form["envKey"]; key != nil {
