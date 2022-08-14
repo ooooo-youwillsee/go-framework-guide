@@ -6,6 +6,7 @@ import (
 	"os"
 )
 
+// cd cobra-demo/cmd/kubectl && go build -o kubectl main.go
 // kubectl get pod -A
 // program argument: get pod -A
 func main() {
