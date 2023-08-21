@@ -11,6 +11,7 @@ require (
 	github.com/prometheus/client_golang v1.4.0
 	github.com/sirupsen/logrus v1.8.1
 	github.com/smartystreets/goconvey v1.7.2 // indirect
+	github.com/songgao/water v0.0.0-20200317203138-2b4b6d7c09d8
 	github.com/sony/gobreaker v0.5.0
 	github.com/spf13/cobra v1.3.0
 	github.com/streadway/handy v0.0.0-20200128134331-0f66f006fb2e // indirect
